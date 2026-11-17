@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WindWave – CSS Positioning</title>
+  <link rel="stylesheet" href="windwave-position.css">
+</head>
+<body id="top">
+  <header class="page-head">
+    <h1>WindWave</h1>
+    <p>Harnessing wind energy for smart cities, shown through CSS positioning.</p>
+  </header>
+
+  <main>
+    <!-- 1. absolute inside relative -->
+    <section class="block">
+      <h2 class="sticky-title">Example: position absolute</h2>
+      <div class="frame" id="frame">
+        <img src="windwave-cityscape.svg" alt="Wind turbines beside a coastal smart city">
+        <span class="tag top-left" data-pos="top-left">Top Left</span>
+        <span class="tag top-right" data-pos="top-right">Top Right</span>
+        <span class="tag centered" data-pos="centered">Centered</span>
+        <span class="tag bottom-left" data-pos="bottom-left">Bottom Left</span>
+        <span class="tag bottom-right" data-pos="bottom-right">Bottom Right</span>
+      </div>
+      <p class="try-label">Try it yourself:</p>
+      <div class="buttons">
+        <button data-target="top-left">Top Left »</button>
+        <button data-target="top-right">Top Right »</button>
+        <button data-target="bottom-left">Bottom Left »</button>
+        <button data-target="bottom-right">Bottom Right »</button>
+        <button data-target="centered">Centered »</button>
+      </div>
+      <p class="note">The image box uses <code>position: relative</code>. Each label uses <code>position: absolute</code> with <code>top</code>, <code>bottom</code>, <code>left</code> or <code>right</code>, so it is placed against that box.</p>
+    </section>
+
+    <!-- 2. static vs relative -->
+    <section class="block">
+      <h2 class="sticky-title">position: static and relative</h2>
+      <div class="row">
+        <div class="demo-box">Static (default)<br><small>Follows normal flow.</small></div>
+        <div class="demo-box rel">Relative<br><small>Moved 20px down and 20px right from its normal spot.</small></div>
+      </div>
+    </section>
+
+    <!-- 3. z-index -->
+    <section class="block">
+      <h2 class="sticky-title">z-index stacking</h2>
+      <div class="stack">
+        <div class="layer l1">Wind<br><small>z-index: 1</small></div>
+        <div class="layer l3">Grid<br><small>z-index: 3</small></div>
+        <div class="layer l2">City<br><small>z-index: 2</small></div>
+      </div>
+      <p class="note">Positioned elements with a higher <code>z-index</code> are drawn on top of those with a lower one.</p>
+    </section>
+
+    <!-- 4. fixed and sticky -->
+    <section class="block">
+      <h2 class="sticky-title">position: fixed and sticky</h2>
+      <p>The green <b>Back to top</b> button stays in the bottom-right corner of the window while you scroll. That is <code>position: fixed</code>.</p>
+      <p>The grey section titles stick to the top of the screen while their section is in view, then scroll away with it. That is <code>position: sticky</code>.</p>
+      <p>Wind turbines turn moving air into electricity. In a smart city, sensors and forecasts help the grid use that power when it is available and store it when it is not.</p>
+      <p>Rooftop turbines can power lifts and lights. District turbines can supply charging points. Wind farms outside the city can feed the whole network.</p>
+      <p>Careful siting matters, because buildings make the wind gusty. Smart monitoring keeps turbines safe and efficient.</p>
+    </section>
+  </main>
+
+  <a class="to-top" href="#top">Back to top</a>
+  <footer class="foot">WindWave · CSS positioning practicum</footer>
+
+  <script>
+    const tags = document.querySelectorAll('.tag');
+    document.querySelectorAll('.buttons button').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        tags.forEach(function (t) {
+          t.classList.toggle('active', t.dataset.pos === btn.dataset.target);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
